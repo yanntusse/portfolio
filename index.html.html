@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yann Tusse — LaunchPoint Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0d0d0b;--ink2:#4a4a45;--ink3:#9a9a92;
+  --paper:#f8f7f3;--surface:#f0efe9;--surface2:#e8e7df;
+  --border:#ddddd4;--accent:#1a4fd6;--accent2:#e8480c;
+  --accent-light:#eef2fd;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,247,243,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-between;align-items:center;height:60px}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;letter-spacing:-0.3px;color:var(--ink);text-decoration:none}
+.nav-links{display:flex;gap:36px;align-items:center}
+.nav-links a{font-size:13px;color:var(--ink2);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink) !important;color:var(--paper) !important;padding:8px 18px;border-radius:5px;font-weight:500}
+
+/* HERO */
+.wrap{max-width:1140px;margin:0 auto;padding:0 40px}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 80px}
+.eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:28px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--ink3)}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(42px,7vw,86px);line-height:1.0;letter-spacing:-3px;max-width:820px;margin-bottom:28px}
+h1 .dim{color:var(--ink3)}
+.hero-desc{font-size:17px;color:var(--ink2);max-width:540px;line-height:1.8;margin-bottom:44px;font-weight:300}
+
+/* DISCIPLINE TAGS */
+.disc-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:48px}
+.disc{font-size:12px;font-weight:500;padding:8px 16px;border:1px solid var(--border);border-radius:20px;color:var(--ink2);background:var(--paper);transition:all .2s}
+.disc:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.disc.hi{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* WORKFLOW */
+.workflow{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:56px}
+.wf{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 16px;font-size:12px;font-weight:500}
+.wf.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.arr{font-size:14px;color:var(--ink3);padding:0 2px}
+
+.btn-dark{background:var(--ink);color:var(--paper);padding:14px 28px;border-radius:6px;font-size:14px;font-weight:500;text-decoration:none;transition:opacity .2s;display:inline-block}
+.btn-dark:hover{opacity:.82}
+.btn-out{background:transparent;color:var(--ink);border:1px solid var(--border);padding:14px 28px;border-radius:6px;font-size:14px;text-decoration:none;display:inline-block;transition:background .2s}
+.btn-out:hover{background:var(--surface)}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+
+.divider{height:1px;background:var(--border)}
+
+/* SECTIONS */
+.sec{padding:96px 40px;max-width:1140px;margin:0 auto}
+.sec-tag{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.sec-tag::before{content:'';width:18px;height:1px;background:var(--ink3)}
+.sec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(26px,4vw,42px);letter-spacing:-1.5px;margin-bottom:52px;line-height:1.1}
+
+/* SERVICES */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.svc{background:var(--paper);padding:34px 30px;transition:background .2s}
+.svc:hover{background:var(--surface)}
+.svc-n{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:1px;color:var(--ink3);margin-bottom:18px}
+.svc-name{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.4px;margin-bottom:10px;line-height:1.2}
+.svc-desc{font-size:13px;color:var(--ink2);line-height:1.7}
+.pills{display:flex;gap:5px;flex-wrap:wrap;margin-top:18px}
+.pill{font-size:10px;padding:3px 8px;border-radius:3px;background:var(--surface2);color:var(--ink2)}
+
+/* WORK */
+.work-list{display:flex;flex-direction:column;gap:2px}
+.wi{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--paper);margin-bottom:2px}
+.wh{padding:30px 34px;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start;transition:background .2s}
+.wh:hover{background:var(--surface)}
+.wtags{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.wt{font-size:10px;font-weight:600;padding:3px 9px;border-radius:3px;letter-spacing:0.4px;text-transform:uppercase}
+.wt-s{background:#eef2fd;color:#1a4fd6}
+.wt-o{background:#e5f4ec;color:#0a6640}
+.wt-st{background:#fef3ee;color:#c43d08}
+.wt-i{background:#f0effe;color:#3c3489}
+.wt-sp{background:var(--surface2);color:var(--ink3)}
+.wt-launch{background:#fff3e0;color:#b85c00}
+.wi-title{font-family:'Syne',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.4px;line-height:1.25;margin-bottom:8px}
+.wi-sum{font-size:13px;color:var(--ink2);line-height:1.7;max-width:660px}
+.tog{font-size:20px;color:var(--ink3);padding-top:2px;user-select:none}
+.wb{display:none;padding:0 34px 30px;border-top:1px solid var(--border)}
+.wb.open{display:block}
+.wmetrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin:22px 0;border-radius:8px;overflow:hidden}
+.wmc{background:var(--surface);padding:16px 14px}
+.wmv{font-family:'Syne',sans-serif;font-weight:700;font-size:21px;margin-bottom:3px;color:var(--ink)}
+.wml{font-size:11px;color:var(--ink3)}
+.wcols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:4px}
+.wct{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.wcl{list-style:none;display:flex;flex-direction:column;gap:6px}
+.wcl li{font-size:13px;color:var(--ink2);padding-left:14px;position:relative;line-height:1.5}
+.wcl li::before{content:'--';position:absolute;left:0;color:var(--border);font-size:10px;top:3px}
+.wfoot{margin-top:18px;padding-top:14px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.wftool{font-size:12px;color:var(--ink3)}
+.wfres{font-size:13px;font-weight:500;color:var(--accent)}
+
+/* PHASES */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.phase{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px}
+.phase-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
+.phase-title{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:10px;letter-spacing:-0.3px}
+.phase-items{list-style:none;display:flex;flex-direction:column;gap:5px}
+.phase-items li{font-size:12px;color:var(--ink2);padding-left:12px;position:relative}
+.phase-items li::before{content:'·';position:absolute;left:0;color:var(--ink3)}
+
+/* APPROACH */
+.ap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.ap{padding:34px;border:1px solid var(--border);border-radius:10px;transition:border-color .2s}
+.ap:hover{border-color:var(--ink3)}
+.ap-n{font-family:'Syne',sans-serif;font-weight:800;font-size:34px;color:var(--surface2);margin-bottom:14px;line-height:1}
+.ap-t{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:8px;letter-spacing:-0.2px}
+.ap-d{font-size:13px;color:var(--ink2);line-height:1.7}
+
+/* CONTACT */
+.ct-wrap{background:var(--ink);border-radius:16px;padding:64px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.ct-l h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(26px,4vw,38px);letter-spacing:-1.5px;color:var(--paper);margin-bottom:14px;line-height:1.1}
+.ct-l p{font-size:15px;color:rgba(248,247,243,0.55);line-height:1.8;max-width:360px}
+.ct-cards{display:flex;flex-direction:column;gap:10px}
+.ctc{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:16px 20px}
+.ctc-l{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(248,247,243,0.4);margin-bottom:5px}
+.ctc-v{font-size:14px;font-weight:500;color:var(--paper)}
+.btn-lt{display:inline-block;background:var(--paper);color:var(--ink);padding:13px 26px;border-radius:6px;font-size:14px;font-weight:500;text-decoration:none;transition:opacity .2s;margin-top:22px}
+.btn-lt:hover{opacity:.9}
+
+footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);border-top:1px solid var(--border)}
+
+@media(max-width:768px){
+  .nav-inner,.wrap{padding:0 20px}
+  .nav-links a:not(.nav-cta){display:none}
+  h1{letter-spacing:-2px}
+  .sec{padding:64px 20px}
+  .svc-grid,.ap-grid{grid-template-columns:1fr}
+  .wh{grid-template-columns:1fr}
+  .tog{display:none}
+  .wb{padding:0 18px 22px}
+  .wmetrics{grid-template-columns:repeat(2,1fr)}
+  .wcols,.phases{grid-template-columns:1fr}
+  .ct-wrap{grid-template-columns:1fr;padding:36px 22px;gap:32px}
+  footer{flex-direction:column;gap:8px;padding:22px 20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><img src="LOGO.png" alt="LaunchPoint Projects" style="height:32px;width:auto;filter:brightness(0) invert(0);display:block;"></a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <section class="hero">
+    <p class="eyebrow">SEO Strategy · Campaign Operations · Product Launches · Project Delivery</p>
+    <h1>Strategy, systems,<br><span class="dim">and delivery.</span></h1>
+    <p class="hero-desc">I help brands, agencies, and SaaS companies turn marketing ideas into structured, executable plans — and make sure those plans actually ship.</p>
+
+    <div class="disc-row">
+      <span class="disc hi">SEO Content Strategy</span>
+      <span class="disc">Campaign Operations</span>
+      <span class="disc">Product Launches</span>
+      <span class="disc">Project Delivery</span>
+      <span class="disc">Marketing Systems</span>
+    </div>
+
+    <div class="workflow">
+      <div class="wf">Research</div><div class="arr">→</div>
+      <div class="wf on">Strategy</div><div class="arr">→</div>
+      <div class="wf">Brief</div><div class="arr">→</div>
+      <div class="wf">Execution</div><div class="arr">→</div>
+      <div class="wf">Delivery</div><div class="arr">→</div>
+      <div class="wf">Reporting</div>
+    </div>
+
+    <div class="actions">
+      <a href="mailto:yanntusse@gmail.com" class="btn-dark">Get in touch</a>
+      <a href="#work" class="btn-out">See the work</a>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<div style="background:var(--paper)">
+<section class="sec" id="services">
+  <p class="sec-tag">What I do</p>
+  <h2 class="sec-title">Six productized services<br>for growing teams</h2>
+  <div class="svc-grid">
+    <div class="svc"><div class="svc-n">01</div><div class="svc-name">SEO Content Strategy</div><div class="svc-desc">Keyword research, competitor gap analysis, content clustering, and a realistic editorial calendar built around buyer intent at every funnel stage.</div><div class="pills"><span class="pill">Keyword Research</span><span class="pill">Content Calendar</span><span class="pill">Gap Analysis</span></div></div>
+    <div class="svc"><div class="svc-n">02</div><div class="svc-name">Product Launch Strategy</div><div class="svc-desc">End-to-end launch planning across paid social, email automation, influencer marketing, and SEO — from waitlist building through to conversion.</div><div class="pills"><span class="pill">Launch Campaigns</span><span class="pill">Email Sequences</span><span class="pill">Paid Social</span></div></div>
+    <div class="svc"><div class="svc-n">03</div><div class="svc-name">Campaign Operations</div><div class="svc-desc">Task ownership, deadline management, client update flows, and workflow systems so campaigns move from brief to delivery without coordination chaos.</div><div class="pills"><span class="pill">ClickUp</span><span class="pill">Notion</span><span class="pill">Workflow Design</span></div></div>
+    <div class="svc"><div class="svc-n">04</div><div class="svc-name">Marketing Systems Implementation</div><div class="svc-desc">Structured execution frameworks for SaaS and distributed marketing teams — brief-to-publish workflows, approval systems, and content pipelines.</div><div class="pills"><span class="pill">Brief Templates</span><span class="pill">Approval Flows</span><span class="pill">SOP Design</span></div></div>
+    <div class="svc"><div class="svc-n">05</div><div class="svc-name">Competitive SEO Positioning</div><div class="svc-desc">Niche-first keyword strategies for SaaS companies competing against well-funded incumbents — long-tail targeting, comparison pages, audience clusters.</div><div class="pills"><span class="pill">SaaS SEO</span><span class="pill">Comparison Pages</span><span class="pill">Long-tail Strategy</span></div></div>
+    <div class="svc"><div class="svc-n">06</div><div class="svc-name">Project Delivery Systems</div><div class="svc-desc">Master scheduling, critical path monitoring, stakeholder reporting, and multi-team coordination for complex, time-sensitive delivery environments.</div><div class="pills"><span class="pill">Primavera P6</span><span class="pill">Schedule Control</span><span class="pill">Dashboards</span></div></div>
+  </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- WORK -->
+<div style="background:var(--surface)">
+<section class="sec" id="work">
+  <p class="sec-tag">Selected work</p>
+  <h2 class="sec-title">Seven projects across<br>four disciplines</h2>
+  <div class="work-list">
+
+    <!-- 1: WorkFlowPro SEO -->
+    <div class="wi">
+      <div class="wh" onclick="tog(this)">
+        <div>
+          <div class="wtags"><span class="wt wt-s">SEO Strategy</span><span class="wt wt-st">B2B SaaS</span></div>
+          <div class="wi-title">WorkFlowPro — 6-month B2B SEO content strategy</div>
+          <div class="wi-sum">SaaS productivity platform stuck on pages 3–5, competing against large established tools. Built a full 6-month SEO strategy around buyer intent mapping, content clusters, and a 48-article editorial calendar targeting Operations Managers and Project Leads.</div>
+        </div>
+        <div class="tog">+</div>
+      </div>
+      <div class="wb">
+        <div class="wmetrics">
+          <div class="wmc"><div class="wmv">+156%</div><div class="wml">Organic traffic target</div></div>
+          <div class="wmc"><div class="wmv">+158%</div><div class="wml">Organic leads target</div></div>
+          <div class="wmc"><div class="wmv">125</div><div class="wml">Keywords in top 10</div></div>
+          <div class="wmc"><div class="wmv">+50%</div><div class="wml">Demo conversion rate</div></div>
+        </div>
+        <div class="wcols">
+          <div><div class="wct">The challenge</div><ul class="wcl"><li>Competing against large, well-established SaaS platforms</li><li>Low organic visibility — pages 3 to 5 across target keywords</li><li>Needed to establish thought leadership in workflow automation</li><li>Had to reduce dependency on expensive paid search</li></ul></div>
+          <div><div class="wct">What I built</div><ul class="wcl"><li>3-persona buyer intent map across awareness, consideration, decision</li><li>Thematic content clusters by funnel stage</li><li>6-month editorial calendar — 48 blog posts, 4 comparison pages, 1 case study, 1 whitepaper</li><li>Long-tail keyword targeting to outflank competitors on niche terms</li></ul></div>
+        </div>
+        <div class="wfoot"><span class="wftool">Deliverable: Full 6-month SEO strategy + editorial calendar</span><span class="wfres">2,500 to 6,400 monthly organic visitors projected</span></div>
+      </div>
+    </div>
+
+    <!-- 2: GrowthMark SEO concept -->
+    <div class="wi">
+      <div class="wh" onclick="tog(this)">
+        <div>
+          <div class="wtags"><span class="wt wt-s">SEO Strategy</span><span class="wt wt-sp">Concept Project</span></div>
+          <div class="wi-title">GrowthMark Agency — SEO content strategy from zero</div>
+          <div class="wi-sum">6-person marketing agency with no blog, no organic presence, and no keyword strategy. Built a complete SEO content engine from scratch — 45 target keywords, 6-month editorial calendar, content brief templates, and a reporting dashboard.</div>
+        </div>
+        <div class="tog">+</div>
+      </div>
+      <div class="wb">
+        <div class="wmetrics">
+          <div class="wmc"><div class="wmv">1,800</div><div class="wml">Monthly organic visits (projected)</div></div>
+          <div class="wmc"><div class="wmv">45</div><div class="wml">Keywords identified</div></div>
+          <div class="wmc"><div class="wmv">24</div><div class="wml">Articles planned</div></div>
+          <div class="wmc"><div class="wmv">+210%</div><div class="wml">Lead growth projected</div></div>
+        </div>
+        <div class="wcols">
+          <div><div class="wct">The challenge</div><ul class="wcl"><li>No existing content or domain authority</li><li>Competing against larger, well-funded agencies</li><li>Small team with limited content bandwidth</li><li>No SEO tooling or processes in place</li></ul></div>
+          <div><div class="wct">What I built</div><ul class="wcl"><li>Keyword research and clustering across 6 content themes</li><li>Competitor gap analysis across 4 competing agencies</li><li>6-month editorial calendar with topic, intent, and persona mapped</li><li>Standardized brief templates and on-page SEO framework</li></ul></div>
+        </div>
+        <div class="wfoot"><span class="wftool">Tools: Ahrefs · Google Sheets · Content brief templates</span><span class="wfres">Zero to 1,800 monthly organic visits by month 6</span></div>
+      </div>
+    </div>
+
+    <!-- 3: TaskBridge SaaS -->
+    <div class="wi">
+      <div class="wh" onclick="tog(this)">
+        <div>
+          <div class="wtags"><span class="wt wt-s">SEO Strategy</span><span class="wt wt-st">SaaS</span><span class="wt wt-sp">Concept Project</span></div>
+          <div class="wi-title">TaskBridge — Ranking against Asana and Monday on a startup budget</div>
+          <div class="wi-sum">Project management SaaS stuck on pages 4–5 while Asana, Monday.com, and ClickUp dominated. Designed a niche-first flanking strategy using long-tail keywords, comparison content, and underserved audience segments the big players were ignoring.</div>
+        </div>
+        <div class="tog">+</div>
+      </div>
+      <div class="wb">
+        <div class="wmetrics">
+          <div class="wmc"><div class="wmv">P4→P1</div><div class="wml">Ranking target</div></div>
+          <div class="wmc"><div class="wmv">+185%</div><div class="wml">Organic traffic projected</div></div>
+          <div class="wmc"><div class="wmv">68</div><div class="wml">Long-tail keywords</div></div>
+          <div class="wmc"><div class="wmv">+140%</div><div class="wml">Demo requests projected</div></div>
+        </div>
+        <div class="wcols">
+          <div><div class="wct">The challenge</div><ul class="wcl"><li>Competing against Asana, Monday, ClickUp enterprise budgets</li><li>Broad keywords impossible to rank for with low domain authority</li><li>2-person marketing team with limited output capacity</li></ul></div>
+          <div><div class="wct">What I built</div><ul class="wcl"><li>Competitor gap analysis — 3 underserved audience clusters identified</li><li>68 long-tail keywords all with difficulty score under 35</li><li>Comparison page framework for bottom-of-funnel intent</li><li>6-month calendar across creative agency, remote team, freelancer segments</li></ul></div>
+        </div>
+        <div class="wfoot"><span class="wftool">Tools: SEMrush · Comparison page framework</span><span class="wfres">Niche domination over broad head-to-head competition</span></div>
+      </div>
+    </div>
+
+    <!-- 4: AquaPulse -->
+    <div class="wi">
+      <div class="wh" onclick="tog(this)">
+        <div>
+          <div class="wtags"><span class="wt wt-launch">Product Launch</span><span class="wt wt-st">DTC</span></div>
+          <div class="wi-title">AquaPulse — 12-week integrated digital launch strategy</div>
+          <div class="wi-sum">Sustainable smart fitness bottle entering a saturated market. Designed a full 3-phase launch campaign across paid social, email automation, and influencer marketing — built around trust and storytelling over price competition. Target: 11,400 waitlist sign-ups and $49,000 pre-order revenue.</div>
+        </div>
+        <div class="tog">+</div>
+      </div>
+      <div class="wb">
+        <div class="wmetrics">
+          <div class="wmc"><div class="wmv">11,400</div><div class="wml">Waitlist sign-ups projected</div></div>
+          <div class="wmc"><div class="wmv">$49,000</div><div class="wml">Launch week revenue</div></div>
+          <div class="wmc"><div class="wmv">31%</div><div class="wml">Email open rate</div></div>
+          <div class="wmc"><div class="wmv">3.8x</div><div class="wml">Paid ad ROAS</div></div>
+        </div>
+        <div class="phases">
+          <div class="phase">
+            <div class="phase-label">Phase 1 — Weeks 1–4</div>
+            <div class="phase-title">Awareness</div>
+            <ul class="phase-items"><li>Meta and TikTok paid teasers</li><li>Lookalike audience targeting</li><li>Waitlist landing page build</li><li>Target: 10,000 sign-ups</li></ul>
+          </div>
+          <div class="phase">
+            <div class="phase-label">Phase 2 — Weeks 5–8</div>
+            <div class="phase-title">Engagement</div>
+            <ul class="phase-items"><li>3-part waitlist drip email sequence</li><li>Feature explainer micro-video ads</li><li>Blog content: hydration and performance</li><li>Target: 31% email open rate</li></ul>
+          </div>
+          <div class="phase">
+            <div class="phase-label">Phase 3 — Weeks 9–12</div>
+            <div class="phase-title">Conversion</div>
+            <ul class="phase-items"><li>72-hour launch bundle offer</li><li>Retargeting funnel for engaged visitors</li><li>5 micro-influencer unboxings</li><li>Target: 5.2% pre-order conversion</li></ul>
+          </div>
+        </div>
+        <div class="wfoot"><span class="wftool">Channels: Meta · TikTok · Email · Influencer · Paid Search</span><span class="wfres">CPL target under $1.50 · ROAS 3.8x · 5.2% conversion</span></div>
+      </div>
+    </div>
+
+    <!-- 5: Digital Launch Strategy -->
+    <div class="wi">
+      <div class="wh" onclick="tog(this)">
+        <div>
+          <div class="wtags"><span class="wt wt-launch">Product Launch</span><span class="wt wt-s">SEO</span></div>
+          <div class="wi-title">Digital Launch Strategy — 12-month integrated marketing plan</div>
+          <div class="wi-sum">Comprehensive go-to-market strategy for a new product launch. Three-phase plan covering pre-launch hype, launch day conversion, and sustained organic growth — with full budget allocation, KPI framework, and channel strategy across paid social, SEO, email, and influencer.</div>
+        </div>
+        <div class="tog">+</div>
+      </div>
+      <div class="wb">
+        <div class="wmetrics">
+          <div class="wmc"><div class="wmv">15,000</div><div class="wml">Waitlist target (month 3)</div></div>
+          <div class="wmc"><div class="wmv">$2.4M</div><div class="wml">Launch window revenue target</div></div>
+          <div class="wmc"><div class="wmv">4.0x</div><div class="wml">Paid search ROAS target</div></div>
+          <div class="wmc"><div class="wmv">+150%</div><div class="wml">Organic traffic (month 12)</div></div>
+        </div>
+        <div class="phases">
+          <div class="phase">
+            <div class="phase-label">Phase 1 — Months 1–3</div>
+            <div class="phase-title">Pre-Launch Hype</div>
+            <ul class="phase-items"><li>Paid social waitlist campaign — $0.75 CPL target</li><li>High-value lead magnet for sign-ups</li><li>5-part email drip warm-up sequence</li><li>Target: 15,000 subscribers</li></ul>
+          </div>
+          <div class="phase">
+            <div class="phase-label">Phase 2 — Months 4–6</div>
+            <div class="phase-title">Launch and Conversion</div>
+            <ul class="phase-items"><li>Google Search campaigns for high-intent buyers</li><li>Segmented waitlist flash sale — 48-hour early bird</li><li>3 major blog features and 5 micro-influencer reviews</li><li>Target: 3–5% conversion rate</li></ul>
+          </div>
+          <div class="phase">
+            <div class="phase-label">Phase 3 — Months 7–12</div>
+            <div class="phase-title">Sustained Growth</div>
+            <ul class="phase-items"><li>SEO strategy — 30 high-volume low-competition keywords</li><li>Long-form content guides and audience mapping</li><li>7-day and 30-day retargeting loops</li><li>Email referral loyalty programme</li></ul>
+          </div>
+        </div>
+        <div class="wcols" style="margin-top:16px">
+          <div><div class="wct">Budget allocation</div><ul class="wcl"><li>40% — Paid social (Meta/TikTok) — waitlist and retargeting</li><li>25% — Paid search (Google) — high-intent conversion</li><li>20% — Content and SEO production</li><li>10% — Email automation and tools</li><li>5% — Influencer and PR</li></ul></div>
+          <div><div class="wct">Key deliverables</div><ul class="wcl"><li>Full 12-month channel strategy and KPI framework</li><li>Phase-by-phase tactical breakdown with channel mix</li><li>Budget allocation model across all paid and organic channels</li><li>SEO keyword targeting plan for sustained organic growth</li></ul></div>
+        </div>
+        <div class="wfoot"><span class="wftool">Channels: Meta · TikTok · Google Ads · Email · SEO · Influencer</span><span class="wfres">End-to-end launch plan from hype to sustainable organic growth</span></div>
+      </div>
+    </div>
+
+    <!-- 6: SaaS Marketing Systems -->
+    <div class="wi">
+      <div class="wh" onclick="tog(this)">
+        <div>
+          <div class="wtags"><span class="wt wt-o">Marketing Systems</span><span class="wt wt-st">B2B SaaS</span></div>
+          <div class="wi-title">SaaS growth team — marketing systems implementation</div>
+          <div class="wi-sum">Fast-growing SaaS startup with inconsistent marketing output, slow production cycles, and fragmented coordination between product, design, and marketing teams. Implemented a lightweight marketing operations system that stabilized execution within 6 weeks.</div>
+        </div>
+        <div class="tog">+</div>
+      </div>
+      <div class="wb">
+        <div class="wcols">
+          <div><div class="wct">The challenge</div><ul class="wcl"><li>No structured workflow between product, design, and marketing</li><li>Campaigns delayed by unclear ownership and approval cycles</li><li>Inconsistent content output across email, LinkedIn, landing pages</li><li>Repeated rework from lack of centralized briefing system</li></ul></div>
+          <div><div class="wct">What I implemented</div><ul class="wcl"><li>Campaign workflow system — brief to draft to review to publish</li><li>Weekly content production cycle aligned to product updates</li><li>Single-reviewer approval system to cut decision bottlenecks</li><li>Centralized tracking dashboard with owners and deadlines</li><li>Standardized briefing templates across all campaign types</li></ul></div>
+        </div>
+        <div class="wfoot"><span class="wftool">Duration: 6-week implementation · Team size: 8–15 stakeholders</span><span class="wfres">Faster turnaround, consistent output, reduced rework — within 6 weeks</span></div>
+      </div>
+    </div>
+
+    <!-- 7: EPC Substation -->
+    <div class="wi">
+      <div class="wh" onclick="tog(this)">
+        <div>
+          <div class="wtags"><span class="wt wt-i">Infrastructure</span><span class="wt wt-o">Project Delivery</span></div>
+          <div class="wi-title">Brownfield substation upgrade — 8 days ahead of schedule</div>
+          <div class="wi-sum">Utilities operator running a complex substation upgrade within a fixed shutdown window. Multiple subcontractors, live infrastructure, zero tolerance for overruns. Implemented a structured delivery system across scheduling, coordination, and executive reporting.</div>
+        </div>
+        <div class="tog">+</div>
+      </div>
+      <div class="wb">
+        <div class="wmetrics">
+          <div class="wmc"><div class="wmv">+8 days</div><div class="wml">Ahead of schedule</div></div>
+          <div class="wmc"><div class="wmv">Zero</div><div class="wml">Lost-time injuries</div></div>
+          <div class="wmc"><div class="wmv">Zero</div><div class="wml">Permit violations</div></div>
+          <div class="wmc"><div class="wmv">&lt;48hr</div><div class="wml">RFI turnaround</div></div>
+        </div>
+        <div class="wcols">
+          <div><div class="wct">Delivery systems</div><ul class="wcl"><li>Single master schedule across all subcontractors in Primavera P6</li><li>Daily critical path monitoring instead of periodic reviews</li><li>24-hour recovery planning loop for any deviation</li><li>Weekly structured coordination checkpoints</li></ul></div>
+          <div><div class="wct">Reporting and coordination</div><ul class="wcl"><li>Single-page executive dashboard replacing fragmented reports</li><li>RFI turnaround targeted under 48 hours for key dependencies</li><li>Bilingual EN/FR documentation management across vendors</li><li>Referenced internally for future project delivery planning</li></ul></div>
+        </div>
+        <div class="wfoot"><span class="wftool">Tools: Primavera P6 · Excel · Reporting dashboards · 6-month duration</span><span class="wfres">Delivered ahead of schedule with zero safety incidents</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- APPROACH -->
+<div style="background:var(--paper)">
+<section class="sec" id="approach">
+  <p class="sec-tag">How I work</p>
+  <h2 class="sec-title">Four principles behind<br>every engagement</h2>
+  <div class="ap-grid">
+    <div class="ap"><div class="ap-n">01</div><div class="ap-t">Diagnose before building</div><div class="ap-d">I map how work actually moves before recommending anything. Most problems look like execution issues but are really coordination or clarity issues upstream.</div></div>
+    <div class="ap"><div class="ap-n">02</div><div class="ap-t">Systems over heroics</div><div class="ap-d">The goal is never to be indispensable. I build systems predictable enough to run without daily intervention so your team scales without adding overhead.</div></div>
+    <div class="ap"><div class="ap-n">03</div><div class="ap-t">Simple beats sophisticated</div><div class="ap-d">A workflow your team actually uses beats an elegant one they ignore. I design for adoption first and optimize based on what is genuinely working.</div></div>
+    <div class="ap"><div class="ap-n">04</div><div class="ap-t">Visibility creates clarity</div><div class="ap-d">Leaders make better decisions when they see the full picture in one place. I build reporting that surfaces what matters without adding noise.</div></div>
+  </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="ct-wrap">
+    <div class="ct-l">
+      <h2>Let's build something that works.</h2>
+      <p>Whether you need an SEO strategy, a launch campaign, tighter operations, or a delivery system — let's talk about what the right engagement looks like.</p>
+      <a href="mailto:yanntusse@gmail.com" class="btn-lt">Get in touch</a>
+    </div>
+    <div class="ct-cards">
+      <div class="ctc"><div class="ctc-l">Email</div><div class="ctc-v">yanntusse@gmail.com</div></div>
+      <div class="ctc"><div class="ctc-l">Engagement model</div><div class="ctc-v">Retainer · Project-based · Fractional</div></div>
+      <div class="ctc"><div class="ctc-l">Best for</div><div class="ctc-v">Agencies · SaaS companies · DTC brands · Infrastructure teams</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Yann Tusse — LaunchPoint Projects</span>
+  <span>SEO · Product Launches · Campaign Operations · Project Delivery · 2025</span>
+</footer>
+
+<script>
+function tog(h){
+  const b=h.nextElementSibling,ic=h.querySelector('.tog'),open=b.classList.contains('open');
+  document.querySelectorAll('.wb.open').forEach(x=>{x.classList.remove('open');x.previousElementSibling.querySelector('.tog').textContent='+'});
+  if(!open){b.classList.add('open');ic.textContent='−'}
+}
+</script>
+</body>
+</html>
