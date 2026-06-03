@@ -3,47 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yann Tusse — LaunchPoint Projects</title>
+<title>Yanick Tusse — LaunchPoint Projects</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#0d0d0b;--ink2:#4a4a45;--ink3:#9a9a92;
-  --paper:#f8f7f3;--surface:#f0efe9;--surface2:#e8e7df;
-  --border:#ddddd4;--accent:#1a4fd6;--accent2:#e8480c;
+  --ink:#0e0e0c;
+  --ink2:#4a4a45;
+  --ink3:#9a9a92;
+  --paper:#f8f7f3;
+  --surface:#f0efe9;
+  --surface2:#e8e7df;
+  --border:#ddddd4;
+  --accent:#1a4fd6;
+  --accent2:#e8480c;
   --accent-light:#eef2fd;
+  --radius:8px;
 }
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,247,243,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,247,243,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1140px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-between;align-items:center;height:60px}
 .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;letter-spacing:-0.3px;color:var(--ink);text-decoration:none}
 .nav-links{display:flex;gap:36px;align-items:center}
 .nav-links a{font-size:13px;color:var(--ink2);text-decoration:none;transition:color .15s}
 .nav-links a:hover{color:var(--ink)}
-.nav-cta{background:var(--ink) !important;color:var(--paper) !important;padding:8px 18px;border-radius:5px;font-weight:500}
+.nav-cta{background:var(--ink)!important;color:var(--paper)!important;padding:8px 18px;border-radius:5px;font-weight:500}
 
-/* HERO */
+/* ── HERO ── */
 .wrap{max-width:1140px;margin:0 auto;padding:0 40px}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 80px}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 80px;position:relative;z-index:1}
 .eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:28px;display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:'';width:28px;height:1px;background:var(--ink3)}
-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(42px,7vw,86px);line-height:1.0;letter-spacing:-3px;max-width:820px;margin-bottom:28px}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(44px,7vw,88px);line-height:1.0;letter-spacing:-3px;max-width:820px;margin-bottom:28px}
 h1 .dim{color:var(--ink3)}
-.hero-desc{font-size:17px;color:var(--ink2);max-width:540px;line-height:1.8;margin-bottom:44px;font-weight:300}
+.hero-desc{font-size:17px;color:var(--ink2);max-width:52ch;line-height:1.85;margin-bottom:44px;font-weight:300}
 
-/* DISCIPLINE TAGS */
+/* ── DISCIPLINE TAGS — animated ── */
 .disc-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:48px}
-.disc{font-size:12px;font-weight:500;padding:8px 16px;border:1px solid var(--border);border-radius:20px;color:var(--ink2);background:var(--paper);transition:all .2s}
-.disc:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.disc{font-size:12px;font-weight:500;padding:8px 16px;border:1px solid var(--border);border-radius:20px;color:var(--ink2);background:var(--paper);transition:background .2s,color .2s,border-color .2s,transform .15s;cursor:default}
+.disc:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translateY(-2px)}
 .disc.hi{background:var(--accent);color:#fff;border-color:var(--accent)}
+/* stagger animation on load */
+.disc{opacity:0;animation:fadeUp .5s forwards}
+.disc:nth-child(1){animation-delay:.05s}
+.disc:nth-child(2){animation-delay:.12s}
+.disc:nth-child(3){animation-delay:.19s}
+.disc:nth-child(4){animation-delay:.26s}
+.disc:nth-child(5){animation-delay:.33s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-/* WORKFLOW */
+/* ── WORKFLOW — animated steps ── */
 .workflow{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:56px}
-.wf{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 16px;font-size:12px;font-weight:500}
+.wf{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 16px;font-size:12px;font-weight:500;transition:background .2s,color .2s,transform .15s}
+.wf:hover{transform:translateY(-2px);background:var(--surface2)}
 .wf.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 .arr{font-size:14px;color:var(--ink3);padding:0 2px}
 
@@ -53,25 +69,29 @@ h1 .dim{color:var(--ink3)}
 .btn-out:hover{background:var(--surface)}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
 
+/* ── HERO VIDEO BG (opt-in via class) ── */
+.hero-bg{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.hero-bg video,.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.04;filter:grayscale(1)}
+
 .divider{height:1px;background:var(--border)}
 
-/* SECTIONS */
+/* ── SECTIONS ── */
 .sec{padding:96px 40px;max-width:1140px;margin:0 auto}
 .sec-tag{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:18px;display:flex;align-items:center;gap:10px}
 .sec-tag::before{content:'';width:18px;height:1px;background:var(--ink3)}
-.sec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(26px,4vw,42px);letter-spacing:-1.5px;margin-bottom:52px;line-height:1.1}
+.sec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(28px,4vw,44px);letter-spacing:-1.5px;margin-bottom:52px;line-height:1.1}
 
-/* SERVICES */
+/* ── SERVICES ── */
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden}
 .svc{background:var(--paper);padding:34px 30px;transition:background .2s}
 .svc:hover{background:var(--surface)}
 .svc-n{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:1px;color:var(--ink3);margin-bottom:18px}
 .svc-name{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.4px;margin-bottom:10px;line-height:1.2}
-.svc-desc{font-size:13px;color:var(--ink2);line-height:1.7}
+.svc-desc{font-size:13px;color:var(--ink2);line-height:1.75;max-width:34ch}
 .pills{display:flex;gap:5px;flex-wrap:wrap;margin-top:18px}
 .pill{font-size:10px;padding:3px 8px;border-radius:3px;background:var(--surface2);color:var(--ink2)}
 
-/* WORK */
+/* ── WORK ── */
 .work-list{display:flex;flex-direction:column;gap:2px}
 .wi{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--paper);margin-bottom:2px}
 .wh{padding:30px 34px;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start;transition:background .2s}
@@ -85,8 +105,9 @@ h1 .dim{color:var(--ink3)}
 .wt-sp{background:var(--surface2);color:var(--ink3)}
 .wt-launch{background:#fff3e0;color:#b85c00}
 .wi-title{font-family:'Syne',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.4px;line-height:1.25;margin-bottom:8px}
-.wi-sum{font-size:13px;color:var(--ink2);line-height:1.7;max-width:660px}
-.tog{font-size:20px;color:var(--ink3);padding-top:2px;user-select:none}
+.wi-sum{font-size:13px;color:var(--ink2);line-height:1.75;max-width:66ch}
+.tog{font-size:20px;color:var(--ink3);padding-top:2px;user-select:none;transition:transform .2s}
+.tog.open{transform:rotate(45deg)}
 .wb{display:none;padding:0 34px 30px;border-top:1px solid var(--border)}
 .wb.open{display:block}
 .wmetrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin:22px 0;border-radius:8px;overflow:hidden}
@@ -96,13 +117,13 @@ h1 .dim{color:var(--ink3)}
 .wcols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:4px}
 .wct{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
 .wcl{list-style:none;display:flex;flex-direction:column;gap:6px}
-.wcl li{font-size:13px;color:var(--ink2);padding-left:14px;position:relative;line-height:1.5}
+.wcl li{font-size:13px;color:var(--ink2);padding-left:14px;position:relative;line-height:1.6}
 .wcl li::before{content:'--';position:absolute;left:0;color:var(--border);font-size:10px;top:3px}
 .wfoot{margin-top:18px;padding-top:14px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .wftool{font-size:12px;color:var(--ink3)}
 .wfres{font-size:13px;font-weight:500;color:var(--accent)}
 
-/* PHASES */
+/* ── PHASES ── */
 .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
 .phase{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px}
 .phase-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
@@ -111,32 +132,36 @@ h1 .dim{color:var(--ink3)}
 .phase-items li{font-size:12px;color:var(--ink2);padding-left:12px;position:relative}
 .phase-items li::before{content:'·';position:absolute;left:0;color:var(--ink3)}
 
-/* APPROACH */
+/* ── APPROACH ── */
 .ap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.ap{padding:34px;border:1px solid var(--border);border-radius:10px;transition:border-color .2s}
-.ap:hover{border-color:var(--ink3)}
+.ap{padding:34px;border:1px solid var(--border);border-radius:10px;transition:border-color .2s,box-shadow .2s}
+.ap:hover{border-color:var(--ink3);box-shadow:0 4px 24px rgba(0,0,0,.06)}
 .ap-n{font-family:'Syne',sans-serif;font-weight:800;font-size:34px;color:var(--surface2);margin-bottom:14px;line-height:1}
 .ap-t{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:8px;letter-spacing:-0.2px}
-.ap-d{font-size:13px;color:var(--ink2);line-height:1.7}
+.ap-d{font-size:13px;color:var(--ink2);line-height:1.75;max-width:36ch}
 
-/* CONTACT */
+/* ── CONTACT ── */
 .ct-wrap{background:var(--ink);border-radius:16px;padding:64px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 .ct-l h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(26px,4vw,38px);letter-spacing:-1.5px;color:var(--paper);margin-bottom:14px;line-height:1.1}
-.ct-l p{font-size:15px;color:rgba(248,247,243,0.55);line-height:1.8;max-width:360px}
+.ct-l p{font-size:15px;color:rgba(248,247,243,.55);line-height:1.85;max-width:36ch}
 .ct-cards{display:flex;flex-direction:column;gap:10px}
-.ctc{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:16px 20px}
-.ctc-l{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(248,247,243,0.4);margin-bottom:5px}
+.ctc{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:16px 20px}
+.ctc-l{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(248,247,243,.4);margin-bottom:5px}
 .ctc-v{font-size:14px;font-weight:500;color:var(--paper)}
 .btn-lt{display:inline-block;background:var(--paper);color:var(--ink);padding:13px 26px;border-radius:6px;font-size:14px;font-weight:500;text-decoration:none;transition:opacity .2s;margin-top:22px}
 .btn-lt:hover{opacity:.9}
 
 footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);border-top:1px solid var(--border)}
 
+/* ── SCROLL-REVEAL ── */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal.in{opacity:1;transform:none}
+
 @media(max-width:768px){
-  .nav-inner,.wrap{padding:0 20px}
+  .nav-inner,.wrap,.sec{padding-left:20px;padding-right:20px}
   .nav-links a:not(.nav-cta){display:none}
   h1{letter-spacing:-2px}
-  .sec{padding:64px 20px}
+  .sec{padding-top:64px;padding-bottom:64px}
   .svc-grid,.ap-grid{grid-template-columns:1fr}
   .wh{grid-template-columns:1fr}
   .tog{display:none}
@@ -157,13 +182,17 @@ footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-con
       <a href="#services">Services</a>
       <a href="#work">Work</a>
       <a href="#approach">Approach</a>
-      <a href="#contact" class="nav-cta">Get in touch</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#" class="nav-cta" onclick="openBrief(event)">Submit brief</a>
     </div>
   </div>
 </nav>
 
 <div class="wrap">
   <section class="hero">
+    <!-- Subtle texture background — swap video src for an Unsplash mp4/webm if desired -->
+    <div class="hero-bg" aria-hidden="true"></div>
+
     <p class="eyebrow">SEO Strategy · Campaign Operations · Product Launches · Project Delivery</p>
     <h1>Strategy, systems,<br><span class="dim">and delivery.</span></h1>
     <p class="hero-desc">I help brands, agencies, and SaaS companies turn marketing ideas into structured, executable plans — and make sure those plans actually ship.</p>
@@ -186,7 +215,7 @@ footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-con
     </div>
 
     <div class="actions">
-      <a href="mailto:yanntusse@gmail.com" class="btn-dark">Get in touch</a>
+      <a href="#" class="btn-dark" onclick="openBrief(event)">Submit your brief</a>
       <a href="#work" class="btn-out">See the work</a>
     </div>
   </section>
@@ -196,8 +225,8 @@ footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-con
 
 <!-- SERVICES -->
 <div style="background:var(--paper)">
-<section class="sec" id="services">
-  <p class="sec-tag">What I do</p>
+<section class="sec reveal" id="services">
+  <p class="sec-tag">What I can help with</p>
   <h2 class="sec-title">Six productized services<br>for growing teams</h2>
   <div class="svc-grid">
     <div class="svc"><div class="svc-n">01</div><div class="svc-name">SEO Content Strategy</div><div class="svc-desc">Keyword research, competitor gap analysis, content clustering, and a realistic editorial calendar built around buyer intent at every funnel stage.</div><div class="pills"><span class="pill">Keyword Research</span><span class="pill">Content Calendar</span><span class="pill">Gap Analysis</span></div></div>
@@ -214,12 +243,11 @@ footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-con
 
 <!-- WORK -->
 <div style="background:var(--surface)">
-<section class="sec" id="work">
+<section class="sec reveal" id="work">
   <p class="sec-tag">Selected work</p>
-  <h2 class="sec-title">Seven projects across<br>four disciplines</h2>
+  <h2 class="sec-title">A few of my recent projects</h2>
   <div class="work-list">
 
-    <!-- 1: WorkFlowPro SEO -->
     <div class="wi">
       <div class="wh" onclick="tog(this)">
         <div>
@@ -244,7 +272,6 @@ footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-con
       </div>
     </div>
 
-    <!-- 2: GrowthMark SEO concept -->
     <div class="wi">
       <div class="wh" onclick="tog(this)">
         <div>
@@ -269,7 +296,6 @@ footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-con
       </div>
     </div>
 
-    <!-- 3: TaskBridge SaaS -->
     <div class="wi">
       <div class="wh" onclick="tog(this)">
         <div>
@@ -294,13 +320,12 @@ footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-con
       </div>
     </div>
 
-    <!-- 4: AquaPulse -->
     <div class="wi">
       <div class="wh" onclick="tog(this)">
         <div>
           <div class="wtags"><span class="wt wt-launch">Product Launch</span><span class="wt wt-st">DTC</span></div>
           <div class="wi-title">AquaPulse — 12-week integrated digital launch strategy</div>
-          <div class="wi-sum">Sustainable smart fitness bottle entering a saturated market. Designed a full 3-phase launch campaign across paid social, email automation, and influencer marketing — built around trust and storytelling over price competition. Target: 11,400 waitlist sign-ups and $49,000 pre-order revenue.</div>
+          <div class="wi-sum">Sustainable smart fitness bottle entering a saturated market. Designed a full 3-phase launch campaign across paid social, email automation, and influencer marketing — built around trust and storytelling over price competition.</div>
         </div>
         <div class="tog">+</div>
       </div>
@@ -312,69 +337,14 @@ footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-con
           <div class="wmc"><div class="wmv">3.8x</div><div class="wml">Paid ad ROAS</div></div>
         </div>
         <div class="phases">
-          <div class="phase">
-            <div class="phase-label">Phase 1 — Weeks 1–4</div>
-            <div class="phase-title">Awareness</div>
-            <ul class="phase-items"><li>Meta and TikTok paid teasers</li><li>Lookalike audience targeting</li><li>Waitlist landing page build</li><li>Target: 10,000 sign-ups</li></ul>
-          </div>
-          <div class="phase">
-            <div class="phase-label">Phase 2 — Weeks 5–8</div>
-            <div class="phase-title">Engagement</div>
-            <ul class="phase-items"><li>3-part waitlist drip email sequence</li><li>Feature explainer micro-video ads</li><li>Blog content: hydration and performance</li><li>Target: 31% email open rate</li></ul>
-          </div>
-          <div class="phase">
-            <div class="phase-label">Phase 3 — Weeks 9–12</div>
-            <div class="phase-title">Conversion</div>
-            <ul class="phase-items"><li>72-hour launch bundle offer</li><li>Retargeting funnel for engaged visitors</li><li>5 micro-influencer unboxings</li><li>Target: 5.2% pre-order conversion</li></ul>
-          </div>
+          <div class="phase"><div class="phase-label">Phase 1 — Weeks 1–4</div><div class="phase-title">Awareness</div><ul class="phase-items"><li>Meta and TikTok paid teasers</li><li>Lookalike audience targeting</li><li>Waitlist landing page build</li><li>Target: 10,000 sign-ups</li></ul></div>
+          <div class="phase"><div class="phase-label">Phase 2 — Weeks 5–8</div><div class="phase-title">Engagement</div><ul class="phase-items"><li>3-part waitlist drip email sequence</li><li>Feature explainer micro-video ads</li><li>Blog content: hydration and performance</li><li>Target: 31% email open rate</li></ul></div>
+          <div class="phase"><div class="phase-label">Phase 3 — Weeks 9–12</div><div class="phase-title">Conversion</div><ul class="phase-items"><li>72-hour launch bundle offer</li><li>Retargeting funnel for engaged visitors</li><li>5 micro-influencer unboxings</li><li>Target: 5.2% pre-order conversion</li></ul></div>
         </div>
         <div class="wfoot"><span class="wftool">Channels: Meta · TikTok · Email · Influencer · Paid Search</span><span class="wfres">CPL target under $1.50 · ROAS 3.8x · 5.2% conversion</span></div>
       </div>
     </div>
 
-    <!-- 5: Digital Launch Strategy -->
-    <div class="wi">
-      <div class="wh" onclick="tog(this)">
-        <div>
-          <div class="wtags"><span class="wt wt-launch">Product Launch</span><span class="wt wt-s">SEO</span></div>
-          <div class="wi-title">Digital Launch Strategy — 12-month integrated marketing plan</div>
-          <div class="wi-sum">Comprehensive go-to-market strategy for a new product launch. Three-phase plan covering pre-launch hype, launch day conversion, and sustained organic growth — with full budget allocation, KPI framework, and channel strategy across paid social, SEO, email, and influencer.</div>
-        </div>
-        <div class="tog">+</div>
-      </div>
-      <div class="wb">
-        <div class="wmetrics">
-          <div class="wmc"><div class="wmv">15,000</div><div class="wml">Waitlist target (month 3)</div></div>
-          <div class="wmc"><div class="wmv">$2.4M</div><div class="wml">Launch window revenue target</div></div>
-          <div class="wmc"><div class="wmv">4.0x</div><div class="wml">Paid search ROAS target</div></div>
-          <div class="wmc"><div class="wmv">+150%</div><div class="wml">Organic traffic (month 12)</div></div>
-        </div>
-        <div class="phases">
-          <div class="phase">
-            <div class="phase-label">Phase 1 — Months 1–3</div>
-            <div class="phase-title">Pre-Launch Hype</div>
-            <ul class="phase-items"><li>Paid social waitlist campaign — $0.75 CPL target</li><li>High-value lead magnet for sign-ups</li><li>5-part email drip warm-up sequence</li><li>Target: 15,000 subscribers</li></ul>
-          </div>
-          <div class="phase">
-            <div class="phase-label">Phase 2 — Months 4–6</div>
-            <div class="phase-title">Launch and Conversion</div>
-            <ul class="phase-items"><li>Google Search campaigns for high-intent buyers</li><li>Segmented waitlist flash sale — 48-hour early bird</li><li>3 major blog features and 5 micro-influencer reviews</li><li>Target: 3–5% conversion rate</li></ul>
-          </div>
-          <div class="phase">
-            <div class="phase-label">Phase 3 — Months 7–12</div>
-            <div class="phase-title">Sustained Growth</div>
-            <ul class="phase-items"><li>SEO strategy — 30 high-volume low-competition keywords</li><li>Long-form content guides and audience mapping</li><li>7-day and 30-day retargeting loops</li><li>Email referral loyalty programme</li></ul>
-          </div>
-        </div>
-        <div class="wcols" style="margin-top:16px">
-          <div><div class="wct">Budget allocation</div><ul class="wcl"><li>40% — Paid social (Meta/TikTok) — waitlist and retargeting</li><li>25% — Paid search (Google) — high-intent conversion</li><li>20% — Content and SEO production</li><li>10% — Email automation and tools</li><li>5% — Influencer and PR</li></ul></div>
-          <div><div class="wct">Key deliverables</div><ul class="wcl"><li>Full 12-month channel strategy and KPI framework</li><li>Phase-by-phase tactical breakdown with channel mix</li><li>Budget allocation model across all paid and organic channels</li><li>SEO keyword targeting plan for sustained organic growth</li></ul></div>
-        </div>
-        <div class="wfoot"><span class="wftool">Channels: Meta · TikTok · Google Ads · Email · SEO · Influencer</span><span class="wfres">End-to-end launch plan from hype to sustainable organic growth</span></div>
-      </div>
-    </div>
-
-    <!-- 6: SaaS Marketing Systems -->
     <div class="wi">
       <div class="wh" onclick="tog(this)">
         <div>
@@ -393,7 +363,6 @@ footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-con
       </div>
     </div>
 
-    <!-- 7: EPC Substation -->
     <div class="wi">
       <div class="wh" onclick="tog(this)">
         <div>
@@ -426,9 +395,9 @@ footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-con
 
 <!-- APPROACH -->
 <div style="background:var(--paper)">
-<section class="sec" id="approach">
+<section class="sec reveal" id="approach">
   <p class="sec-tag">How I work</p>
-  <h2 class="sec-title">Four principles behind<br>every engagement</h2>
+  <h2 class="sec-title">Principles behind<br>every engagement</h2>
   <div class="ap-grid">
     <div class="ap"><div class="ap-n">01</div><div class="ap-t">Diagnose before building</div><div class="ap-d">I map how work actually moves before recommending anything. Most problems look like execution issues but are really coordination or clarity issues upstream.</div></div>
     <div class="ap"><div class="ap-n">02</div><div class="ap-t">Systems over heroics</div><div class="ap-d">The goal is never to be indispensable. I build systems predictable enough to run without daily intervention so your team scales without adding overhead.</div></div>
@@ -440,13 +409,74 @@ footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-con
 
 <div class="divider"></div>
 
+<!-- PRICING -->
+<div style="background:var(--surface)">
+<section class="sec reveal" id="pricing">
+  <p class="sec-tag">Pricing</p>
+  <h2 class="sec-title">Transparent engagement<br>models for every stage</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+
+    <div style="background:var(--paper);padding:36px 30px;display:flex;flex-direction:column;position:relative">
+      <div style="position:absolute;top:16px;right:16px;background:var(--accent2);color:white;font-size:10px;font-weight:600;padding:3px 10px;border-radius:3px;letter-spacing:0.5px">START HERE</div>
+      <div style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:16px">Discovery & Audit</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:28px;letter-spacing:-1px;color:var(--ink);margin-bottom:4px">R8,000 – R15,000</div>
+      <div style="font-size:13px;color:var(--ink3);margin-bottom:20px">1–2 week engagement</div>
+      <div style="height:1px;background:var(--border);margin-bottom:20px"></div>
+      <div style="font-size:13px;color:var(--ink2);line-height:1.75;margin-bottom:24px">The right starting point if you want a clear diagnosis before committing to a full engagement. I audit your current setup and deliver a structured action plan.</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px">
+        <li style="font-size:13px;color:var(--ink2);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">✦</span> Workflow or SEO audit</li>
+        <li style="font-size:13px;color:var(--ink2);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">✦</span> Gap analysis and findings report</li>
+        <li style="font-size:13px;color:var(--ink2);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">✦</span> Prioritized action plan</li>
+        <li style="font-size:13px;color:var(--ink2);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">✦</span> 60-min debrief call</li>
+      </ul>
+      <div style="margin-top:auto"><a href="#" onclick="openBrief(event)" style="display:block;text-align:center;border:1px solid var(--border);border-radius:6px;padding:12px;font-size:13px;font-weight:500;color:var(--ink);text-decoration:none;transition:background .2s" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='transparent'">Submit your brief</a></div>
+    </div>
+
+    <div style="background:var(--ink);padding:36px 30px;display:flex;flex-direction:column;position:relative">
+      <div style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(248,247,243,0.4);margin-bottom:16px">Project-Based</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:28px;letter-spacing:-1px;color:var(--paper);margin-bottom:4px">R25,000 – R80,000+</div>
+      <div style="font-size:13px;color:rgba(248,247,243,0.4);margin-bottom:20px">Scoped per project</div>
+      <div style="height:1px;background:rgba(255,255,255,0.1);margin-bottom:20px"></div>
+      <div style="font-size:13px;color:rgba(248,247,243,0.6);line-height:1.75;margin-bottom:24px">A defined scope, timeline, and deliverable. Best for SEO strategies, launch campaigns, systems builds, or delivery projects with a clear start and end.</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px">
+        <li style="font-size:13px;color:rgba(248,247,243,0.8);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">✦</span> Full strategy or system build</li>
+        <li style="font-size:13px;color:rgba(248,247,243,0.8);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">✦</span> Clear scope and deliverables</li>
+        <li style="font-size:13px;color:rgba(248,247,243,0.8);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">✦</span> Fixed timeline and milestones</li>
+        <li style="font-size:13px;color:rgba(248,247,243,0.8);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">✦</span> 50% upfront · 50% on delivery</li>
+      </ul>
+      <div style="margin-top:auto"><a href="#" onclick="openBrief(event)" style="display:block;text-align:center;background:var(--paper);border-radius:6px;padding:12px;font-size:13px;font-weight:500;color:var(--ink);text-decoration:none">Submit your brief</a></div>
+    </div>
+
+    <div style="background:var(--paper);padding:36px 30px;display:flex;flex-direction:column">
+      <div style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:16px">Monthly Retainer</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:28px;letter-spacing:-1px;color:var(--ink);margin-bottom:4px">R15,000 – R45,000</div>
+      <div style="font-size:13px;color:var(--ink3);margin-bottom:20px">Per month · 10–20 hrs</div>
+      <div style="height:1px;background:var(--border);margin-bottom:20px"></div>
+      <div style="font-size:13px;color:var(--ink2);line-height:1.75;margin-bottom:24px">Ongoing fractional support for teams that need a consistent operational or strategic layer without the cost of a full-time hire.</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px">
+        <li style="font-size:13px;color:var(--ink2);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">✦</span> Ongoing ops or SEO support</li>
+        <li style="font-size:13px;color:var(--ink2);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">✦</span> Weekly check-ins and reporting</li>
+        <li style="font-size:13px;color:var(--ink2);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">✦</span> Priority response time</li>
+        <li style="font-size:13px;color:var(--ink2);padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--accent)">✦</span> Month-to-month flexibility</li>
+      </ul>
+      <div style="margin-top:auto"><a href="#" onclick="openBrief(event)" style="display:block;text-align:center;border:1px solid var(--border);border-radius:6px;padding:12px;font-size:13px;font-weight:500;color:var(--ink);text-decoration:none;transition:background .2s" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='transparent'">Submit your brief</a></div>
+    </div>
+
+  </div>
+  <p style="font-size:13px;color:var(--ink3);text-align:center;margin-top:20px">All engagements start with a brief intake. Submit the form and I'll send a project roadmap and fixed-price proposal.</p>
+  <div style="text-align:center;margin-top:14px"><a href="#" onclick="openBrief(event)" style="display:inline-block;background:var(--accent);color:#fff;padding:13px 30px;border-radius:6px;font-size:14px;font-weight:500;text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Submit your project brief →</a></div>
+</section>
+</div>
+
+<div class="divider"></div>
+
 <!-- CONTACT -->
-<section class="sec" id="contact">
+<section class="sec reveal" id="contact">
   <div class="ct-wrap">
     <div class="ct-l">
       <h2>Let's build something that works.</h2>
-      <p>Whether you need an SEO strategy, a launch campaign, tighter operations, or a delivery system — let's talk about what the right engagement looks like.</p>
-      <a href="mailto:yanntusse@gmail.com" class="btn-lt">Get in touch</a>
+      <p>Whether you need an SEO strategy, a launch campaign, tighter operations, or a delivery system — submit a brief and I'll send you a project roadmap and fixed-price proposal. No discovery call required.</p>
+      <a href="#" class="btn-lt" onclick="openBrief(event)">Submit your brief</a>
     </div>
     <div class="ct-cards">
       <div class="ctc"><div class="ctc-l">Email</div><div class="ctc-v">yanntusse@gmail.com</div></div>
@@ -457,15 +487,341 @@ footer{max-width:1140px;margin:0 auto;padding:28px 40px;display:flex;justify-con
 </section>
 
 <footer>
-  <span>Yann Tusse — LaunchPoint Projects</span>
+  <span>Yanick Tusse — LaunchPoint Projects</span>
   <span>SEO · Product Launches · Campaign Operations · Project Delivery · 2025</span>
 </footer>
 
+<!-- ═══════════════════════════════════════════════════
+     BRIEF FORM MODAL
+═══════════════════════════════════════════════════ -->
+<style>
+/* ── Modal overlay ── */
+.brief-overlay{position:fixed;inset:0;z-index:999;background:rgba(13,13,11,.55);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .3s}
+.brief-overlay.open{opacity:1;pointer-events:all}
+
+/* ── Modal panel ── */
+.brief-panel{position:fixed;top:0;right:0;bottom:0;z-index:1000;width:min(560px,100vw);background:var(--paper);overflow-y:auto;transform:translateX(100%);transition:transform .38s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+.brief-panel.open{transform:none}
+
+/* ── Panel header ── */
+.brief-head{padding:28px 36px 0;display:flex;justify-content:space-between;align-items:flex-start;position:sticky;top:0;background:var(--paper);z-index:2;border-bottom:1px solid var(--border);padding-bottom:20px}
+.brief-head-txt p{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+.brief-head-txt h3{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.5px}
+.brief-close{background:none;border:none;cursor:pointer;font-size:22px;color:var(--ink3);line-height:1;padding:4px;transition:color .15s}
+.brief-close:hover{color:var(--ink)}
+
+/* ── Steps indicator ── */
+.brief-steps{padding:16px 36px;display:flex;gap:6px;align-items:center;border-bottom:1px solid var(--border)}
+.bstep{height:3px;border-radius:2px;background:var(--border);flex:1;transition:background .3s}
+.bstep.done{background:var(--accent)}
+.bstep.active{background:var(--ink)}
+
+/* ── Form body ── */
+.brief-body{padding:28px 36px;flex:1;display:flex;flex-direction:column;gap:0}
+
+/* ── Step panes ── */
+.bpane{display:none;flex-direction:column;gap:18px}
+.bpane.active{display:flex}
+
+/* ── Field groups ── */
+.bf{display:flex;flex-direction:column;gap:6px}
+.bf label{font-size:12px;font-weight:500;color:var(--ink2);letter-spacing:.3px}
+.bf label span{color:var(--accent);margin-left:2px}
+.bf input,.bf textarea,.bf select{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:11px 14px;width:100%;transition:border-color .15s,box-shadow .15s;outline:none;resize:none;appearance:none}
+.bf input:focus,.bf textarea:focus,.bf select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light)}
+.bf textarea{min-height:90px;line-height:1.65}
+.bf select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239a9a92' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.bf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* ── Option pills (multi-select) ── */
+.bf-opts{display:flex;flex-wrap:wrap;gap:7px}
+.bf-opt{font-size:12px;font-weight:500;padding:7px 14px;border:1px solid var(--border);border-radius:20px;cursor:pointer;transition:all .15s;user-select:none;color:var(--ink2);background:var(--paper)}
+.bf-opt:hover{border-color:var(--ink3)}
+.bf-opt.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* ── Hint text ── */
+.bf-hint{font-size:12px;color:var(--ink3);line-height:1.5;margin-top:-6px}
+
+/* ── Step nav buttons ── */
+.brief-nav{padding:20px 36px 28px;display:flex;gap:10px;border-top:1px solid var(--border);position:sticky;bottom:0;background:var(--paper)}
+.brief-nav .btn-dark{flex:1;text-align:center;padding:13px;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500}
+.brief-nav .btn-back{background:transparent;color:var(--ink2);border:1px solid var(--border);padding:13px 20px;border-radius:6px;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s}
+.brief-nav .btn-back:hover{background:var(--surface)}
+
+/* ── Success state ── */
+.brief-success{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 36px;gap:16px;flex:1}
+.brief-success.show{display:flex}
+.bs-icon{width:56px;height:56px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px}
+.brief-success h3{font-family:'Syne',sans-serif;font-weight:700;font-size:22px;letter-spacing:-0.5px}
+.brief-success p{font-size:14px;color:var(--ink2);line-height:1.75;max-width:36ch}
+
+/* ── Error ── */
+.bf-err{font-size:12px;color:#c43d08;margin-top:-10px;display:none}
+.bf-err.show{display:block}
+
+@media(max-width:600px){
+  .brief-head,.brief-body,.brief-nav,.brief-steps{padding-left:20px;padding-right:20px}
+  .bf-row{grid-template-columns:1fr}
+}
+</style>
+
+<!-- Overlay -->
+<div class="brief-overlay" id="briefOverlay" onclick="closeBrief()"></div>
+
+<!-- Panel -->
+<div class="brief-panel" id="briefPanel" role="dialog" aria-modal="true" aria-label="Project brief form">
+
+  <div class="brief-head">
+    <div class="brief-head-txt">
+      <p>Project Brief</p>
+      <h3>Tell me about your project</h3>
+    </div>
+    <button class="brief-close" onclick="closeBrief()" aria-label="Close">&times;</button>
+  </div>
+
+  <div class="brief-steps" id="briefSteps">
+    <div class="bstep active" id="bs0"></div>
+    <div class="bstep" id="bs1"></div>
+    <div class="bstep" id="bs2"></div>
+  </div>
+
+  <form id="briefForm" novalidate>
+    <!-- Hidden Web3Forms key — replace YOUR_ACCESS_KEY with your key from web3forms.com (free) -->
+    <input type="hidden" name="access_key" value="fc3ec509-0460-498e-8b0c-2c463a9c37d2">
+    <input type="hidden" name="subject" value="New project brief — LaunchPoint Projects">
+    <input type="hidden" name="from_name" value="LaunchPoint Brief Form">
+    <input type="hidden" name="services" id="servicesHidden">
+    <input type="hidden" name="redirect" value="false">
+
+    <div class="brief-body">
+
+      <!-- ── STEP 1: About you ── -->
+      <div class="bpane active" id="pane0">
+        <div class="bf-row">
+          <div class="bf">
+            <label>Your name <span>*</span></label>
+            <input type="text" name="name" id="f-name" placeholder="Jane Smith" autocomplete="name">
+            <div class="bf-err" id="err-name">Please enter your name</div>
+          </div>
+          <div class="bf">
+            <label>Company / Brand</label>
+            <input type="text" name="company" placeholder="Acme Inc.">
+          </div>
+        </div>
+        <div class="bf">
+          <label>Email <span>*</span></label>
+          <input type="email" name="email" id="f-email" placeholder="jane@company.com" autocomplete="email">
+          <div class="bf-err" id="err-email">Please enter a valid email</div>
+        </div>
+        <div class="bf">
+          <label>What best describes your business?</label>
+          <select name="business_type">
+            <option value="" disabled selected>Select one…</option>
+            <option>SaaS / Tech startup</option>
+            <option>Marketing / Creative agency</option>
+            <option>DTC / E-commerce brand</option>
+            <option>Infrastructure / Engineering</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ── STEP 2: The project ── -->
+      <div class="bpane" id="pane1">
+        <div class="bf">
+          <label>Which service are you interested in?</label>
+          <p class="bf-hint">Select all that apply</p>
+          <div class="bf-opts" id="servicesOpts">
+            <div class="bf-opt" data-val="SEO Content Strategy">SEO Content Strategy</div>
+            <div class="bf-opt" data-val="Product Launch Strategy">Product Launch Strategy</div>
+            <div class="bf-opt" data-val="Campaign Operations">Campaign Operations</div>
+            <div class="bf-opt" data-val="Marketing Systems">Marketing Systems</div>
+            <div class="bf-opt" data-val="Competitive SEO Positioning">Competitive SEO Positioning</div>
+            <div class="bf-opt" data-val="Project Delivery Systems">Project Delivery Systems</div>
+            <div class="bf-opt" data-val="Not sure yet">Not sure yet</div>
+          </div>
+        </div>
+        <div class="bf">
+          <label>What's your approximate budget?</label>
+          <select name="budget">
+            <option value="" disabled selected>Select a range…</option>
+            <option>R8,000 – R15,000 (Discovery)</option>
+            <option>R15,000 – R25,000</option>
+            <option>R25,000 – R50,000</option>
+            <option>R50,000 – R80,000</option>
+            <option>R80,000+</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="bf">
+          <label>When do you need to start?</label>
+          <select name="timeline">
+            <option value="" disabled selected>Select a timeframe…</option>
+            <option>As soon as possible</option>
+            <option>Within 2 weeks</option>
+            <option>Within a month</option>
+            <option>Within 3 months</option>
+            <option>Just exploring</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ── STEP 3: The brief ── -->
+      <div class="bpane" id="pane2">
+        <div class="bf">
+          <label>Describe your project <span>*</span></label>
+          <p class="bf-hint">What's the problem you're trying to solve? The more specific, the better.</p>
+          <textarea name="project_description" id="f-desc" placeholder="E.g. We're a 10-person SaaS company with no organic traffic. We want to build an SEO content engine that targets operations managers…" rows="5"></textarea>
+          <div class="bf-err" id="err-desc">Please describe your project</div>
+        </div>
+        <div class="bf">
+          <label>What does success look like?</label>
+          <textarea name="success_definition" placeholder="E.g. 2,000 monthly organic visitors within 6 months, or a campaign system that publishes consistently without me chasing people…" rows="3"></textarea>
+        </div>
+        <div class="bf">
+          <label>Anything else I should know?</label>
+          <textarea name="extra_notes" placeholder="Previous attempts, tools you're using, team size, blockers…" rows="3"></textarea>
+        </div>
+      </div>
+
+    </div><!-- /brief-body -->
+
+    <!-- Success state (shown after submit) -->
+    <div class="brief-success" id="briefSuccess">
+      <div class="bs-icon">✦</div>
+      <h3>Brief received.</h3>
+      <p>I'll review your project and send a roadmap and fixed-price proposal within 48 hours.</p>
+      <a href="#" onclick="closeBrief()" class="btn-dark" style="margin-top:8px">Close</a>
+    </div>
+
+    <div class="brief-nav" id="briefNav">
+      <button type="button" class="btn-back" id="btnBack" style="display:none" onclick="briefBack()">← Back</button>
+      <button type="button" class="btn-dark" id="btnNext" onclick="briefNext()">Continue →</button>
+    </div>
+
+  </form>
+</div>
+
 <script>
+// ── Accordion ──
 function tog(h){
   const b=h.nextElementSibling,ic=h.querySelector('.tog'),open=b.classList.contains('open');
-  document.querySelectorAll('.wb.open').forEach(x=>{x.classList.remove('open');x.previousElementSibling.querySelector('.tog').textContent='+'});
-  if(!open){b.classList.add('open');ic.textContent='−'}
+  document.querySelectorAll('.wb.open').forEach(x=>{
+    x.classList.remove('open');
+    x.previousElementSibling.querySelector('.tog').textContent='+';
+    x.previousElementSibling.querySelector('.tog').classList.remove('open');
+  });
+  if(!open){b.classList.add('open');ic.textContent='−';ic.classList.add('open')}
+}
+
+// ── Workflow step cycling ──
+const steps=document.querySelectorAll('.wf');
+let cur=1;
+setInterval(()=>{
+  steps.forEach(s=>s.classList.remove('on'));
+  cur=(cur+1)%steps.length;
+  steps[cur].classList.add('on');
+},1800);
+
+// ── Scroll reveal ──
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── Brief form modal ──
+let briefStep=0;
+const TOTAL=3;
+
+function openBrief(e){
+  if(e)e.preventDefault();
+  document.getElementById('briefOverlay').classList.add('open');
+  document.getElementById('briefPanel').classList.add('open');
+  document.body.style.overflow='hidden';
+  briefGoTo(0);
+}
+function closeBrief(){
+  document.getElementById('briefOverlay').classList.remove('open');
+  document.getElementById('briefPanel').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBrief()});
+
+function briefGoTo(step){
+  briefStep=step;
+  // panes
+  document.querySelectorAll('.bpane').forEach((p,i)=>p.classList.toggle('active',i===step));
+  // steps indicator
+  document.querySelectorAll('.bstep').forEach((s,i)=>{
+    s.classList.remove('active','done');
+    if(i<step)s.classList.add('done');
+    else if(i===step)s.classList.add('active');
+  });
+  // nav buttons
+  const back=document.getElementById('btnBack');
+  const next=document.getElementById('btnNext');
+  back.style.display=step>0?'block':'none';
+  if(step===TOTAL-1){next.textContent='Submit brief ✦'}
+  else{next.textContent='Continue →'}
+}
+
+// Multi-select pills
+document.querySelectorAll('.bf-opt').forEach(opt=>{
+  opt.addEventListener('click',()=>{
+    opt.classList.toggle('sel');
+    const selected=[...document.querySelectorAll('.bf-opt.sel')].map(o=>o.dataset.val).join(', ');
+    document.getElementById('servicesHidden').value=selected;
+  });
+});
+
+function briefValidate(step){
+  let ok=true;
+  if(step===0){
+    const name=document.getElementById('f-name');
+    const email=document.getElementById('f-email');
+    const nameErr=document.getElementById('err-name');
+    const emailErr=document.getElementById('err-email');
+    if(!name.value.trim()){nameErr.classList.add('show');name.focus();ok=false}
+    else nameErr.classList.remove('show');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){
+      emailErr.classList.add('show');if(ok){email.focus()}ok=false
+    } else emailErr.classList.remove('show');
+  }
+  if(step===2){
+    const desc=document.getElementById('f-desc');
+    const descErr=document.getElementById('err-desc');
+    if(!desc.value.trim()){descErr.classList.add('show');desc.focus();ok=false}
+    else descErr.classList.remove('show');
+  }
+  return ok;
+}
+
+function briefBack(){briefGoTo(briefStep-1)}
+
+async function briefNext(){
+  if(!briefValidate(briefStep))return;
+  if(briefStep<TOTAL-1){briefGoTo(briefStep+1);return}
+  // Submit
+  const btn=document.getElementById('btnNext');
+  btn.textContent='Sending…';btn.disabled=true;
+  try{
+    const data=new FormData(document.getElementById('briefForm'));
+    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:data});
+    const json=await res.json();
+    if(json.success){
+      document.getElementById('briefNav').style.display='none';
+      document.getElementById('briefSteps').style.display='none';
+      document.querySelector('.brief-head').style.display='none';
+      document.querySelectorAll('.bpane').forEach(p=>p.classList.remove('active'));
+      document.getElementById('briefSuccess').classList.add('show');
+    } else {
+      btn.textContent='Submit brief ✦';btn.disabled=false;
+      alert('Something went wrong. Please email yanntusse@gmail.com directly.');
+    }
+  } catch(err){
+    btn.textContent='Submit brief ✦';btn.disabled=false;
+    alert('Network error. Please email yanntusse@gmail.com directly.');
+  }
 }
 </script>
 </body>
